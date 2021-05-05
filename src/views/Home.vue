@@ -4,7 +4,7 @@
     <div>
       <div class="catalog">
         
-        <div class="product" @click="goToDetails(product.id)" v-for="product in products" :key="product.id"> 
+        <div class="product" @click="goToProduct(product)" v-for="product in products" :key="product.id"> 
           <img class="image" v-if="product.image" :src="product.image"/>
           <img class="image" v-else :src="plugImage"/>
             <div class="product-inf">
@@ -20,14 +20,10 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import Home from '@/components/Home.vue'
-import image from '../assets/apple.png';
+
+import image from '../assets/apple.png'
 export default {
   name: 'Home',
-  // components: {
-  //   HelloWorld
-  // },
   data: () => ({
     isImage: true,
     mainTitle: "Apple iPod",
@@ -136,9 +132,12 @@ export default {
       }
     ]
   }),
+ 
   methods: {
-    goToDetails(productId) {
-      this.$router.push({name:'Details', params:{pId:productId}})
+    goToProduct (product) {
+      if (product.id) {
+      this.$router.push({name:'product', params:{id: product.id}})
+      }
     }
   }
 }
@@ -180,6 +179,7 @@ html, body {
 .product {
   padding: 0 1rem;
   margin-bottom: 1.5rem;
+  cursor: pointer;
 }
 .product-inf {
   display: flex;
@@ -188,12 +188,12 @@ html, body {
   line-height: 1.5rem;
 }
 .price {
-  background-color: black;
-  color: white;
+  
+  color: #1c6792;
   padding: 0.1rem 0.7rem;
-  border-radius: 2px;
-  font-size: 0.9rem;
-  border: 1px solid grey;
+  
+  font-size: 1.4rem;
+  
 }
 .image {
   width: 18rem;
