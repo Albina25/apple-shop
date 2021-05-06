@@ -18,12 +18,6 @@ export default {};
 </script>
 
 <style lang="scss" scopped>
-* {
-  padding: 0;
-  margin: 0;
-  font-family: Roboto, sans-serif;
-  box-sizing: border-box;
-} 
 #navigation {
   display: flex;
   width: 100%;
@@ -31,12 +25,11 @@ export default {};
 }
 .top-navigation {
   display: flex;
-  margin: 0 3rem;
+  margin: 0.5rem 3rem;
   z-index: 9999;
   width: 100%;
   list-style: none;
   justify-content: space-around;
-  margin-top: 0.5rem;
 }
 .element-navigation {
   text-decoration: none;

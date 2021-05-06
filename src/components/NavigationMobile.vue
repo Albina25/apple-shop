@@ -1,6 +1,7 @@
 <template>
   <div id="navigation-mobile">
     <ul class="top-navigation-mobile">
+      <li class="element-navigation-mobile"><router-link to="/"><i class="fab fa-apple fa-lg"></i></router-link></li>
       <li class="element-navigation-mobile">Mac</li>
       <li class="element-navigation-mobile">iPad</li>
       <li class="element-navigation-mobile">iPhone</li>
@@ -23,19 +24,11 @@ export default {};
 </script>
 
 <style lang="scss" scopped>
-* {
-  padding: 0;
-  margin: 0;
-  font-family: Roboto, sans-serif;
-  box-sizing: border-box;
-} 
 #navigation-mobile {
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   margin-top: 1.9rem;
-  // background: #202020;
-  // background-color: #202020;
   background: linear-gradient(to right, #080808 15%,#606060);
   z-index: 9999;
   transition: .5s ease-in-out;
@@ -45,7 +38,6 @@ export default {};
   flex-direction: column;
   margin-bottom: 1rem;
   border-bottom: 1px solid white;
-  // width: auto;
   list-style: none;
   transition: .5s ease-in-out;
 }
@@ -79,7 +71,9 @@ export default {};
       opacity: 0.6;
       }
     }
-    
-  }   
+}
+.fab {
+  color: white;
+}  
  
 </style>

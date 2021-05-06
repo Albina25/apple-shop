@@ -1,26 +1,25 @@
 <template>
   <div id="app">
-   <div class="header-image">
-      
+    <div class="header-image">
       <Navigation v-if="!mobileView" /> 
-  
+        <router-link class="element-icon-home" to="/"><i class="fab fa-apple fa-lg"></i></router-link>
         <div class="icon-navigation" v-if="mobileView">
           <i class="fas fa-bars element-icon-navigation" v-if="!showNav"  @click="showNav=!showNav" key="menu"></i>
           <i class="fas fa-times element-icon-navigation" v-else @click="showNav=!showNav" key="clear"></i>
-          <!-- <i class="fab fa-apple fa-lg element-icon-home"></i> -->
         </div>
         <div v-if="showNav">
           <NavigationMobile />
         </div>
-       
-      <div class="header-text">
-      <h4>{{ mainTitle }}</h4>
-      <h1 class="slogon">Развлечения<br>на полной скорости</h1>
-      <router-link to="/"><button class="button-catalog">каталог</button></router-link>
-      </div>
+        <div class="header-title-and-button">
+          <div class="header-title"> 
+            <h3>{{ mainTitle }}</h3>
+            <h1 class="slogon">Развлечения<br>на полной скорости</h1>
+          </div>
+          <div><router-link class="button-catalog" tag="button" to="/catalog/">каталог</router-link></div>
+        </div>
     </div>
-     <router-view/>
-</div>
+  <router-view/>
+  </div>
 </template>
 
 <script>
@@ -28,14 +27,12 @@ import Navigation from './components/Navigation.vue'
 import NavigationMobile from './components/NavigationMobile.vue'
 import image from './assets/apple.png';
 
-
 export default {
   name: 'App',
   components: {
     Navigation,
     NavigationMobile
   },
-  
   data: () => ({
     isImage: true,
     mainTitle: "Apple iPod",
@@ -46,14 +43,12 @@ export default {
   }),
   methods: {
     handleView() {
-      // this.mobileView = window.innerWidth <= 768;
       if ( window.innerWidth <= 768) {
         this.mobileView = true;
       } else { 
           this.showNav = false; 
           this.mobileView = false;
         }
-        
     }
   },
   created() {
@@ -61,18 +56,16 @@ export default {
     window.addEventListener('resize', this.handleView);
   }
 } 
- 
 </script>
 
-
 <style lang="scss" scopped>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: #f3f3f3;
 }
 * {
   padding: 0;
@@ -80,6 +73,10 @@ export default {
   font-family: Roboto, sans-serif;
   box-sizing: border-box;
 } 
+html, body {
+	width: 100%;
+	font-size: 16px;
+}
 .header-image {
   position: relative;
   height: 30vh;
@@ -92,9 +89,11 @@ export default {
   background-repeat: no-repeat;
 }
 .button-catalog {
+  font-size: 1.2rem;
   border: none;
+  text-decoration: none;
   outline: 0;
-  padding: 0.7rem 1.5rem;
+  padding: 0.3rem 0.8rem;
   color: black;
   background-color: #ddd;
   text-align: center;
@@ -102,13 +101,16 @@ export default {
   text-transform: uppercase;
   box-shadow: 0 0 0.8rem rgba(0,0,0,0.5);
     &:hover {
-      opacity: 0.8;
+      opacity: 0.9;
     }
     &:active {
-      opacity: 0.6;
+      opacity: 0.8;
     }
 }
-.header-text {
+.header-title {
+  text-shadow: black 2px 3px 2px; 
+}
+.header-title-and-button {
   text-align: center;
   position: relative;
   top: 50%;
@@ -118,7 +120,6 @@ export default {
   font-size: 1.5rem;
   line-height: 1.3;
   letter-spacing: -.015em;
-  text-shadow: black 2px 3px 2px; 
 }
 .slogon {
 margin-bottom: 1rem;
@@ -141,11 +142,21 @@ width: auto;
   transition: .5s ease-in-out;
 }
 .element-icon-home {
-  position: absolute;
-  left: 0.5rem;
+  display: none;
+}
+
+@media only screen and (max-width: 414px) and (orientation: portrait) {
+  .header-title-and-button {
+      font-size: 1rem;
+  }
+  .element-icon-home {
+  position: relative;
   cursor: pointer;
   margin-top: 0.5rem;
   color: white;
   z-index: 9999;
-}
+  top: 0.5rem;
+  right: 10.5rem;
+  }
+}  
 </style>
