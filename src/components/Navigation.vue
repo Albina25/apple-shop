@@ -7,7 +7,7 @@
       <li class="element-navigation">iPhone</li>
       <li class="element-navigation">Whatch</li>
       <li class="element-navigation">TV</li>
-      <li class="element-navigation">Music</li>
+      <li><router-link class="element-navigation" to="/catalog">iPod</router-link></li>
       <li class="element-navigation">Поддержка</li>
     </ul> 
   </div>
@@ -20,6 +20,7 @@ export default {};
 <style lang="scss" scopped>
 #navigation {
   display: flex;
+  position: absolute;
   width: 100%;
   justify-content: center;
 }

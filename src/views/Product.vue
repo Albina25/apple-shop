@@ -2,7 +2,7 @@
   <div class="product">
     <div class="container">
       <div class="product-photo-and-inf">
-        <div class="product-image">
+        <div class="prod-image">
           <img id="expandedImg" class="main-image" :src="getImage.image">
           <!-- <div class="images-row">
             <img class="demo" :src="defImage" @click="currentImage(this)" alt="img1">
@@ -15,7 +15,7 @@
           <div class="general-inf-part"><span>{{ selectedProduct.title }}</span></div>
           <div class="price general-inf-part"><h2>{{ selectedProduct.price }}&#8381;</h2></div>
           <div><button class="button-basket general-inf-part">добавить в корзину</button></div>
-          <div><button class="button-show-more general-inf-part">купить</button></div>
+          <div><button class="button-buy general-inf-part">купить</button></div>
         </div>
           
       </div>
@@ -393,7 +393,7 @@ import image from '../assets/apple.png';
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $bg-color: #f3f3f3;
 .product {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -405,212 +405,241 @@ $bg-color: #f3f3f3;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}  
-.container {
-  display: flex;
-  flex-direction: column;
-}
-.general-inf {
-  display: flex;
-  // align-items: center;
-  flex-direction: column;
-  align-content: stretch;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  padding: 1rem;
-}
-.general-inf-part {
-  margin-bottom: 1rem;
-}
-.main-image {
-  width: 30rem;
-  border: 1px solid grey;
-  border-radius: 10px;
-  margin-right: 1rem;
-}
-.product-photo-and-inf {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: row;
-  line-height: 1.5rem;
-  margin-bottom: 1rem;
-}
-.title {
-  margin-bottom: 1rem;
-}
-.button-basket {
-  display: flex;
-  text-transform: uppercase;
-  background-color: black;
-  color: white;
-  border: 1px solid black;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-.button-full-details {
-  font-size: 1rem;
-  transition-duration: 0.4s;
-  background-color: white;
-  border: 0;
-  color: black;
-  border-bottom: 2px dotted lightgrey;
-  user-select: none;
-  outline: none;
-  cursor: pointer;
-  text-decoration: none;
-  margin-bottom: 1rem;
-  background: $bg-color;
-    &:hover {
-      opacity: 0.8;
-    }
-    &:active {
-      opacity: 0.6;
-    }
-}
-.button-show-more {
-  display: flex;
-  text-transform: uppercase;
-  background-color: white;
-  color: black;
-  border: 1px solid black;
-  padding: 0.5rem 1rem;
-  background-color: white;
-  color: black;
-  cursor: pointer;
-  text-decoration: none;
-    &:hover {
-      opacity: 0.8;
-    }
-    &:active {
-      opacity: 0.6;
-    }
-}
-.images-row {
-  display: flex;
-}
-.demo {
-  margin-right: 1rem;
-  border: 1px solid black;
-  border-radius: 7px;
-  cursor: pointer;
-  width: 9.3rem;
-  opacity: 0.6;
-    &:active {
-      opacity: 1;
-    }
-    &:hover {
-      opacity: 1;
-    }
-}
-.price {
-  color: #1c6792;
-}
-.table-characteristics {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
-  border-collapse: collapse;
-  width: 100%;
-  margin-bottom: 0.5rem;
-  background: $bg-color;
-}
-.characteristic-row {
-  display: flex;
-  padding-bottom: 0.5rem;
-  text-align: left;
-  background: $bg-color;
- }
-.characteristic-col-name {
-  width: 60%;
-  border-bottom: 1px dotted lightgray;
-}
-.characteristic-title {
-  text-transform: uppercase;
-  font-size: 1.1rem;
-  color: black;
-}
-.more-prod-title {
-  display: flex;
-  text-transform: uppercase;
-  font-size: 1.1rem;
-  color: black;
-  justify-content: flex-start;
-  margin-bottom: 1rem;
-}  
-.characteristics-hidden {
-  height: 5rem;
-  overflow: hidden;
-  display: -webkit-box; 
-  -webkit-box-orient: vertical;
-  background: white;
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 50%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f3f3f3 100%);
-  }
-}
-.product-inf {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  line-height: 1.5rem;
-}
-.more-products {
-  display: flex;
-  margin-bottom: 1rem;
-  flex-direction: row;
-  width: 60rem;
-  align-items: center;
-  justify-content: space-between;
-}
- @media only screen and (max-width: 414px) and (orientation: portrait) {
-   .product {
-     font-size: 14px;
-   }
-  .main-image {
-    width: 20rem;
-    border: 1px solid grey;
-    border-radius: 10px;
-    margin-right: 0;
-  }
-  .demo {
-    width: 5rem;
-  }
- .product-photo-and-inf {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    line-height: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .product-image {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
+  
   .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .general-inf {
+    display: flex;
+    // align-items: center;
+    flex-direction: column;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: flex-start;
+    // width: 100%;
     padding: 1rem;
   }
-  .more-products {
-  flex-direction: column;
-  width: 20rem;
-  align-items: center;
+  .general-inf-part {
+    margin-bottom: 1rem;
+  }
+  .main-image {
+    width: 30rem;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-right: 1rem;
+  }
+  .product-photo-and-inf {
+    display: flex;
+    align-items: flex-start;
+    flex-flow: row wrap;
+    line-height: 1.5rem;
+    margin-bottom: 1rem;
+    // justify-content: center;
+    margin: 0 auto;
+    // max-width: 40rem
+  }
+  .title {
+    margin-bottom: 1rem;
+  }
+  .button-basket {
+    display: flex;
+    text-transform: uppercase;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  .button-full-details {
+    font-size: 1rem;
+    transition-duration: 0.4s;
+    // background-color: white;
+    border: 0;
+    color: black;
+    border-bottom: 2px dotted lightgrey;
+    user-select: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    background: $bg-color;
+      &:hover {
+        opacity: 0.8;
+      }
+      &:active {
+        opacity: 0.6;
+      }
+  }
+  .button-buy {
+    display: flex;
+    text-transform: uppercase;
+    background-color: $bg-color;
+    color: black;
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+    
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+      &:hover {
+        opacity: 0.8;
+      }
+      &:active {
+        opacity: 0.6;
+      }
+  }
+  .images-row {
+    display: flex;
+  }
+  .demo {
+    margin-right: 1rem;
+    border: 1px solid black;
+    border-radius: 7px;
+    cursor: pointer;
+    width: 9.3rem;
+    opacity: 0.6;
+      &:active {
+        opacity: 1;
+      }
+      &:hover {
+        opacity: 1;
+      }
+  }
+  .price {
+    color: #1c6792;
+  }
+  .table-characteristics {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    background: $bg-color;
   }
   .characteristic-row {
-    border-bottom: 1px dotted lightgray;
+    display: flex;
+    padding-bottom: 0.5rem;
+    text-align: left;
+    background: $bg-color;
   }
   .characteristic-col-name {
-    border-bottom: 0;
+    width: 60%;
+    border-bottom: 1px dotted lightgray;
   }
-  .characteristic-col-value {
-    white-space: pre-wrap;
+  .characteristic-title {
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    color: black;
+  }
+  .more-prod-title {
+    display: flex;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    color: black;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+  }  
+  .characteristics-hidden {
+    height: 5rem;
+    overflow: hidden;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical;
+    background: white;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f3f3f3 100%);
+    }
+  }
+    .image {
+      width: 14rem;
+      border: 1px solid grey;
+      border-radius: 10px;
+      &:hover {
+        opacity: 0.8;
+      }
+      &:active {
+        opacity: 0.6;
+      }
+    }
+
+  .product-inf {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    line-height: 1.5rem;
+  }
+  .more-products {
+    display: flex;
+    margin-bottom: 1rem;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: scroll;
+  }
+}
+@media (max-width: 876px) {
+  .product-photo-and-inf {
+    
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+ @media only screen and (max-width: 414px) and (orientation: portrait) {
+  .product {
+     font-size: 14px;
+   
+    .main-image {
+      width: 20rem;
+      border: 1px solid grey;
+      border-radius: 10px;
+      margin-right: 0;
+    }
+    .demo {
+      width: 5rem;
+    }
+    .product-photo-and-inf {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      line-height: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .prod-image {
+      display: flex;
+      justify-content: center;
+      // width: 100%;
+    }
+    .container {
+      padding: 1rem;
+    }
+    .more-products {
+    flex-direction: column;
+    width: 20rem;
+    align-items: center;
+    margin-bottom: 0;
+    }
+    .characteristic-row {
+      border-bottom: 1px dotted lightgray;
+    }
+    .characteristic-col-name {
+      border-bottom: 0;
+    }
+    .characteristic-col-value {
+      white-space: pre-wrap;
+    }
   }
 }
 </style>

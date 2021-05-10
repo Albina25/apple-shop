@@ -1,33 +1,42 @@
 <template>
   <div class="catalog">
-    <h3 class="catalog-slogon">Ваша музыка с вами посвюду</h3>
-    <div>
+    <h3 class="catalog-slogon">Выбери свой iPod</h3>
+    <div class="center">
       <div class="catalog-list">
-        <div class="product" @click="goToProduct(product)" v-for="product in products" :key="product.id"> 
-          <img class="image" :src="getSrcImg(product)" alt="illustration" onerror="this.src=defImage"/>
-            <div class="product-inf">
-              <span class="product-type">{{ product.product_type }}</span>
-              <span class="product-title">{{ product.title}}</span>
-              <span class="price">{{ product.price }}<i class="fas fa-ruble-sign fa-xs"></i></span>
-            </div>
+        <div class="product" @click="goToProduct(product)" v-for="product of products.slice(0, end)" :key="product.id"> 
+          <img class="product-image" :src="getSrcImg(product)" alt="illustration" onerror="this.src=defImage"/>
+          <div class="product-inf">
+            <span class="product-type">{{ product.product_type }}</span>
+            <span class="product-title">{{ product.title}}</span>
+            <span class="price">{{ product.price }}<i class="fas fa-ruble-sign fa-xs"></i></span>
+          </div>
         </div>
       </div>
     </div>
+    <button @click="showMoreProducts" v-show="this.visibleButtonShowMore" class="button-show-more-pr">показать еще</button>
+    <FooterMailing/>
   </div>  
 </template>
 
 <script>
+import FooterMailing from '../components/FooterMailing.vue'
 import image from '../assets/apple.png'
 export default {
   name: 'Home',
+  components: {
+    FooterMailing
+  },
   data: () => ({
     isImage: true,
-    mainTitle: "Apple iPod",
+    prductsOnPage: [],
+    // mainTitle: "Apple iPod",
     defImage: image,
-    showNav: false,
-    mobileView: false,
-    width: 0,
+    // showNav: false,
+    // mobileView: false,
+    // width: 0,
     image: null,
+    end: 6,
+    visibleButtonShowMore:true,
     products: [
       {
           id: 1,
@@ -136,6 +145,11 @@ export default {
       this.$router.push({name:'product', params:{id: product.id}})
       }
   },
+    showMoreProducts () {
+      this.end = this.end + 6;
+      if (this.end > this.products.length) {this.visibleButtonShowMore = false; }
+      return this.end;
+    },
     getSrcImg(item) {
       return item.image ? item.image : this.defImage
     }
@@ -143,7 +157,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scopped>
+<style lang="scss">
+$bg-color: #f3f3f3;
 .catalog {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -154,76 +169,103 @@ export default {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}  
-.catalog-slogon {
-  margin-bottom: 1rem;
-  font-size: 1.7rem;
-}
-.catalog-list {
-  display: flex;
-  flex-wrap: wrap;
-  width: 60rem;
-  align-items: center;
-}
-.product {
-  padding: 0 1rem;
-  margin-bottom: 1.5rem;
-  cursor: pointer;
-}
-.product-inf {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  line-height: 1.5rem;
-}
-.price {
-  
-  color: #1c6792;
-  padding: 0.1rem 0.7rem;
-  
-  font-size: 1.4rem;
-  
-}
-.image {
-  width: 18rem;
-  border: 1px solid grey;
-  border-radius: 10px;
-  &:hover {
-    opacity: 0.8;
+  width: 100%;
+   
+  .catalog-slogon {
+    margin-bottom: 1rem;
+    font-size: 1.7rem;
   }
-  &:active {
-    opacity: 0.6;
-  }
-}
-.product-type {
-  font-size: 0.7rem;
-}
-@media only screen and (min-width: 414px) and (orientation: portrait) {
-  .catalog {
-    width: 40rem;
-  }
-}  
-  @media only screen and (max-width: 414px) and (orientation: portrait) {
+  .center {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 60rem;
+    }
   .catalog-list {
-      flex-direction: column;
-      width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    // flex-wrap: wrap;
+    // width: 60rem;
+    margin: 0 auto;
+    // align-items: center;
+    // text-align: center;
+    // justify-content: center;
   }
-  .image {
-    width: 12rem;
+  .product {
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
   }
-  .header-text {
-    font-size: 0.8rem;
+  .product-inf {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    line-height: 1.5rem;
   }
-  // .element-navigation:not(:first-child) {
-  //   display: none;
-    
-  // }
-  .icon-menu {
-    position: absolute;
-    right: 0;
-    top: 0;
+  .price {
+    color: #1c6792;
+    padding: 0.1rem 0.7rem;
+    font-size: 1.4rem;
   }
-}  
-
-</style>
+  .product-image {
+    width: 18rem;
+    border: 1px solid grey;
+    border-radius: 10px;
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      opacity: 0.6;
+    }
+  }
+  .product-type {
+    font-size: 0.7rem;
+  }
+  .button-show-more-pr {
+    // display: flex;
+    text-transform: uppercase;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 1rem;
+      &:hover {
+        opacity: 0.8;
+      }
+      &:active {
+        opacity: 0.6;
+      }
+  }
+}
+@media only screen and (min-width: 415px) and (orientation: portrait) {
+  .catalog {
+    .catalog-list {
+      width: 40rem;
+    }
+  }  
+}
+  @media only screen and (max-width: 414px) and (orientation: portrait) {
+  .catalog {
+    .catalog-list {
+        flex-direction: column;
+        width: 20rem;
+    }
+    .product-image {
+      width: 16rem;
+    }
+    .header-text {
+      font-size: 0.8rem;
+    }
+    .icon-menu {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }  
+}
+  </style>
 

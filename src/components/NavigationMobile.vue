@@ -7,7 +7,7 @@
       <li class="element-navigation-mobile">iPhone</li>
       <li class="element-navigation-mobile">Whatch</li>
       <li class="element-navigation-mobile">TV</li>
-      <li class="element-navigation-mobile">Music</li>
+      <li class="element-navigation-mobile"><router-link class="element-navigation-mobile" to="/catalog" >iPod</router-link></li>
       <li class="element-navigation-mobile">Поддержка</li>
     </ul> 
     <div class="social-media">
@@ -29,7 +29,8 @@ export default {};
   width: 100%;
   height: 95vh;
   margin-top: 1.9rem;
-  background: linear-gradient(to right, #080808 15%,#606060);
+  // background: linear-gradient(to right, #080808 15%,#606060);
+  background-color:darken( #606060, 18%);
   z-index: 9999;
   transition: .5s ease-in-out;
 }

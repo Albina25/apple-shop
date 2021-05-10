@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <h3 class="catalog-slogon">Ваша музыка с вами посвюду</h3>
+    <div class="bg-image-slogon">
+      <div class="home-slogon">Ваша музыка с вами повcюду</div>
+      <div class="bg-phone-img"></div>
+    </div>
   </div>  
 </template>
 
@@ -29,8 +32,13 @@ export default {
 
 </script>
 
-<style lang="scss" scopped>
+<style lang="scss">
 $bg-color: #f3f3f3 ;
+html, body{
+width: 100%;
+height: 100%;
+background-color: $bg-color;
+}
 .home {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -39,21 +47,69 @@ $bg-color: #f3f3f3 ;
   color: #2c3e50;
   justify-content: center;
   align-items: center;
-  background-image: url('../assets/ipod-touch.jpg');
-  height: 68vh;
-  background-size: 100% auto;
-  background-position: center;
-  background-repeat: no-repeat;
-}  
-.catalog-slogon {
-  margin-bottom: 1rem;
-  font-size: 1.7rem;
+  background: $bg-color;
+ 
+ 
+  .bg-phone-img {
+    background-image: url('../assets/ipod-touch.jpg');
+    height: 68.2vh;
+    background-size: auto 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .home-slogon {
+    font-size: 2.5rem;
+    padding: 1rem;
+    font-weight: bold;
+  }
 }
-@media only screen and (max-width: 414px) and (orientation: portrait) {
+@media only screen and (min-width: 735px) and (max-width: 1068px) and (orientation: portrait) {
+  html, body{
+    font-size: 12px;
+  }
+  // .home {
+  //   height: 67.5vh;
+  //   background-size: auto 100%;
+  // }
   .home {
-    height: 67vh;
-    background-size: auto 100%;
+    
+    .catalog-slogon {
+      padding: 0;
+    }
+    .bg-phone-img {
+    background-image: url('../assets/ipod-touch.jpg');
+    height: 57.5vh;
+    background-size: 500px auto;
+    }
+    .home-slogon {
+      font-size: 1.5rem;
+      padding: 0 1rem;
+    }
   }
 }  
+@media only screen and (max-width: 734px) and (orientation: portrait) {
+  .home {
+    // height: calc(100%-30vh);
+    background-size: 500px auto;
+    
+  
+    .catalog-slogon {
+      padding: 0;
+    }
+    .bg-phone-img {
+    background-image: url('../assets/ipod-touch.jpg');
+    height: 58vh;
+    background-size: 600px auto;
+    }
+    .home-slogon {
+      font-size: 1.5rem;
+      padding: 0 1rem;
+    }
+    html, body{
+      font-size: 12px;
+    }
+  }
+} 
 </style>
 

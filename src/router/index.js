@@ -12,7 +12,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/catalog/',
+    path: '/catalog',
     name: 'catalog',
     component: Catalog,
     props: true
