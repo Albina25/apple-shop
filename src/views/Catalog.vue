@@ -1,7 +1,23 @@
 <template>
   <div class="catalog">
     <h3 class="catalog-slogon">Выбери свой iPod</h3>
+    
     <div class="center">
+      <div class="select-block">
+        <form action="select1.php" method="post">
+          <select name="select-color" class="select-color" @click="sendToServer(this.value)">
+            <option disabled selected>цвет</option>
+            <option value="Зеленый" class="option">зеленый</option>
+            <option value="Красный" class="option">красный</option>
+            <option value="Белый" class="option">белый</option>
+          </select>
+          <select name="select-price" class="select-price">
+            <option disabled selected>цена</option>
+            <option class="option">по убыванию</option>
+            <option class="option">по возрастанию</option>
+          </select>
+        </form>
+      </div>
       <div class="catalog-list">
         <div class="product" @click="goToProduct(product)" v-for="product of products.slice(0, end)" :key="product.id"> 
           <img class="product-image" :src="getSrcImg(product)" alt="illustration" onerror="this.src=defImage"/>
@@ -152,6 +168,16 @@ export default {
     },
     getSrcImg(item) {
       return item.image ? item.image : this.defImage
+    },
+    sendToServer(val) { 
+      const i = val;
+      const response =  fetch('sendToServer.php',{
+        method: 'POST',
+        body: JSON.stringify(i),
+        headers: {
+              'Content-Type': 'application/json', 
+        }
+      });
     }
   }
 }
@@ -175,13 +201,45 @@ $bg-color: #f3f3f3;
     margin-bottom: 1rem;
     font-size: 1.7rem;
   }
+  .select-block {
+    position: relative;
+    top: 0;
+    left: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    text-align: left;
+    justify-content: flex-start;
+    width: 100%;
+  }
   .center {
     display: flex;
     justify-content: center;
     margin: 0 auto;
     text-align: center;
     max-width: 60rem;
+    flex-direction: column;
     }
+  %select {
+    border: none;
+    outline: none;
+    padding-bottom: 0.5rem;
+    background-color: $bg-color;
+    color: gray;
+    text-transform: uppercase;
+    border-bottom: 1px solid gray;
+    margin-right: 1rem;
+    
+  }
+  .select-color, .select-price {
+    @extend %select;
+    &::after {
+      content: "";
+    padding-bottom: 0.5rem;
+    }
+  }
+  .option {
+    padding: 0.5rem 0;
+  }
   .catalog-list {
     display: flex;
     flex-flow: row wrap;

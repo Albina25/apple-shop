@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header-image">
       <Navigation v-if="!mobileView" /> 
-        <router-link v-if="mobileView" class="element-icon-home" to="/"><i class="fab fa-apple fa-lg"></i></router-link>
+        <router-link v-if="mobileView" class="element-icon-home" to="/"><i class="fab fa-apple fa-lg" @click="showNav=false"></i></router-link>
         <div class="icon-navigation" v-if="mobileView">
           <i class="fas fa-bars element-icon-navigation" v-if="!showNav"  @click="showNav=!showNav" key="menu"></i>
           <i class="fas fa-times element-icon-navigation" v-else @click="showNav=!showNav" key="clear"></i>

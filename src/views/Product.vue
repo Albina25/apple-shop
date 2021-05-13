@@ -77,15 +77,21 @@
         </div> 
       </div>   
     </div> 
-  </div>
+    </div>
+  <FooterMailing/>
+
   </div>
 </template>
 
 <script>
 import image from '../assets/apple.png';
+import FooterMailing from '../components/FooterMailing.vue'
 
  export default {
   name:'Product',
+  components: {
+    FooterMailing
+  },
   data() {
     return {
     tableHidden: true,

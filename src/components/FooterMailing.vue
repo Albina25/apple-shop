@@ -52,9 +52,10 @@ export default {
           this.error = '';
       }
 },
-    send() {
+    send() { 
+
       this.validateEmail();
-     
+   
       const response =  fetch('send.php',{
             method: 'POST',
             body: JSON.stringify(this.email),
