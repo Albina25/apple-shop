@@ -67,6 +67,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   background: #f3f3f3;
+  background-size: cover;
 }
 * {
   padding: 0;

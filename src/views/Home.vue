@@ -4,13 +4,18 @@
       <div class="home-slogon">Ваша музыка с вами повcюду</div>
       <div class="bg-phone-img"></div>
     </div>
+    <MainFooter/>
   </div>  
 </template>
 
 <script>
+import MainFooter from '../components/MainFooter.vue'
 
 export default {
   name: 'Home',
+  components: {
+    MainFooter
+  },
   data: () => ({
     isImage: true,
     mainTitle: "Apple iPod",
@@ -52,8 +57,8 @@ background-color: $bg-color;
  
   .bg-phone-img {
     background-image: url('../assets/ipod-touch.jpg');
-    height: 68.2vh;
-    background-size: auto 500px;
+    height: 60vh;
+    background-size: auto 100%;
     background-position: center;
     background-repeat: no-repeat;
   }
@@ -80,7 +85,7 @@ background-color: $bg-color;
     .bg-phone-img {
     background-image: url('../assets/ipod-touch.jpg');
     height: 57.5vh;
-    background-size: 500px auto;
+    background-size: auto 100%;
     }
     .home-slogon {
       font-size: 1.5rem;
@@ -100,7 +105,7 @@ background-color: $bg-color;
     .bg-phone-img {
     background-image: url('../assets/ipod-touch.jpg');
     height: 58vh;
-    background-size: 600px auto;
+    background-size: auto 100%;
     }
     .home-slogon {
       font-size: 1.5rem;

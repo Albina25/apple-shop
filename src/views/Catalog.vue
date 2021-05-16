@@ -196,7 +196,7 @@ $bg-color: #f3f3f3;
   flex-direction: column;
   align-items: center;
   width: 100%;
-   
+  
   .catalog-slogon {
     margin-bottom: 1rem;
     font-size: 1.7rem;
@@ -209,15 +209,21 @@ $bg-color: #f3f3f3;
     display: flex;
     text-align: left;
     justify-content: flex-start;
-    width: 100%;
+    width: 95%;
   }
   .center {
     display: flex;
     justify-content: center;
     margin: 0 auto;
     text-align: center;
-    max-width: 60rem;
+    // max-width: 60rem;
     flex-direction: column;
+    .catalog-list {
+      display: flex;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      margin: 0 auto;
+      }
     }
   %select {
     border: none;
@@ -240,16 +246,7 @@ $bg-color: #f3f3f3;
   .option {
     padding: 0.5rem 0;
   }
-  .catalog-list {
-    display: flex;
-    flex-flow: row wrap;
-    // flex-wrap: wrap;
-    // width: 60rem;
-    margin: 0 auto;
-    // align-items: center;
-    // text-align: center;
-    // justify-content: center;
-  }
+  
   .product {
     padding: 0 1rem;
     margin-bottom: 1.5rem;
@@ -299,22 +296,27 @@ $bg-color: #f3f3f3;
       }
   }
 }
-@media only screen and (min-width: 415px) and (orientation: portrait) {
+@media only screen and (min-width: 415px) and (max-width: 734px) and (orientation: portrait) {
   .catalog {
-    .catalog-list {
-      width: 40rem;
+    .center {
+      .catalog-list {
+        grid-template-columns: repeat(2,20rem);
+      }
     }
-  }  
+  } 
 }
-  @media only screen and (max-width: 414px) and (orientation: portrait) {
+  @media only screen and (max-width: 497px) and (orientation: portrait) {
   .catalog {
-    .catalog-list {
-        flex-direction: column;
-        width: 20rem;
+    .center {
+      .catalog-list {
+        grid-template-columns: repeat(1,20rem);
+          // flex-direction: column;
+          // width: 20rem;
+      }
     }
-    .product-image {
-      width: 16rem;
-    }
+    // .product-image {
+    //   width: 16rem;
+    // }
     .header-text {
       font-size: 0.8rem;
     }

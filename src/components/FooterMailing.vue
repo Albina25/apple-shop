@@ -1,7 +1,7 @@
 <template>
   <div class="mailing">
     <span class="advice">Послезные советы и персональные предложения</span>
-    <h2>Экслюзивная рассылка</h2>
+    <h2 class="advice">Экслюзивная рассылка</h2>
     <div class="list-and-form">
       <div class="individual-part">
         <ul class="list">
@@ -70,6 +70,9 @@ export default {
 
 <style lang="scss">
   .mailing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: black;
     // background: linear-gradient(to right, #080808 15%,#606060);
     width: 100%;
@@ -105,17 +108,21 @@ export default {
       flex-direction: column;
       padding: 1rem;
       background-color: white;
+      justify-content: center;
     }
     .input-and-button {
       display: flex;
       flex-flow: row wrap;
       align-items: center;
       margin-bottom: 0.5rem;
+      margin-right: 0.5rem;
+      justify-content: center;
     }
     .error {
       color: red;
       background-color: white;
       width: 100%;
+      font-size: 0.9rem;
     }
     .list {
       text-align: left
@@ -154,12 +161,14 @@ export default {
     }
     .list-and-form {
       flex-direction: column;
-    }
+    
     .input-and-button {
       flex-direction: column;
+      margin: 0;
+    }
     }
     .button-mail {
-      margin-bottom: 0.5rem;
+      // margin-bottom: 0.5rem;
     }
     
   }
