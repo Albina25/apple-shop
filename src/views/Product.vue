@@ -14,8 +14,8 @@
           <div><h2>{{ selectedProduct.product_type }}</h2></div>
           <div class="general-inf-part"><span>{{ selectedProduct.title }}</span></div>
           <div class="price general-inf-part"><h2>{{ selectedProduct.price }}&#8381;</h2></div>
-          <div><button class="button-basket general-inf-part">добавить в корзину</button></div>
-          <div><button class="button-buy general-inf-part">купить</button></div>
+          <button class="button-basket general-inf-part">добавить в корзину</button>
+          <button class="button-buy general-inf-part">купить</button>
         </div>
           
       </div>
@@ -64,7 +64,7 @@
         <button class="button-full-details" v-if="tableHidden" @click="openDetails">Полное описание</button>
         <button class="button-full-details" v-else @click="closeDetails">Скрыть описание</button>
       </div>
-    <div>
+    <div class="padding">
       <h3 class="more-prod-title">Товары, которые могут Вам понравиться</h3>
       <div class="more-products">
         <div class="product" @click="getProduct(product.id)" v-for="product in threeProducts" :key="product.id">
@@ -418,13 +418,10 @@ $bg-color: #f3f3f3;
   }
   .general-inf {
     display: flex;
-    // align-items: center;
     flex-direction: column;
     align-content: stretch;
     justify-content: flex-start;
     align-items: flex-start;
-    // width: 100%;
-    padding: 1rem;
   }
   .general-inf-part {
     margin-bottom: 1rem;
@@ -434,6 +431,7 @@ $bg-color: #f3f3f3;
     border: 1px solid grey;
     border-radius: 10px;
     margin-right: 1rem;
+    margin-bottom: 1rem;
   }
   .product-photo-and-inf {
     display: flex;
@@ -441,9 +439,7 @@ $bg-color: #f3f3f3;
     flex-flow: row wrap;
     line-height: 1.5rem;
     margin-bottom: 1rem;
-    // justify-content: center;
-    margin: 0 auto;
-    // max-width: 40rem
+    padding: 0 1rem;
   }
   .title {
     margin-bottom: 1rem;
@@ -460,7 +456,6 @@ $bg-color: #f3f3f3;
   .button-full-details {
     font-size: 1rem;
     transition-duration: 0.4s;
-    // background-color: white;
     border: 0;
     color: black;
     border-bottom: 2px dotted lightgrey;
@@ -524,6 +519,7 @@ $bg-color: #f3f3f3;
     width: 100%;
     margin-bottom: 0.5rem;
     background: $bg-color;
+    padding: 0 1rem;
   }
   .characteristic-row {
     display: flex;
@@ -548,6 +544,9 @@ $bg-color: #f3f3f3;
     justify-content: flex-start;
     margin-bottom: 1rem;
   }  
+  .padding {
+    padding: 0 1rem;
+  }
   .characteristics-hidden {
     height: 5rem;
     overflow: hidden;
@@ -590,20 +589,9 @@ $bg-color: #f3f3f3;
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    overflow-x: scroll;
   }
 }
-@media (max-width: 876px) {
-  .product-photo-and-inf {
-    
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
- @media only screen and (max-width: 414px) and (orientation: portrait) {
+ @media only screen and (max-width: 550px) and (orientation: portrait) {
   .product {
      font-size: 14px;
    
@@ -626,16 +614,14 @@ $bg-color: #f3f3f3;
     .prod-image {
       display: flex;
       justify-content: center;
-      // width: 100%;
     }
     .container {
       padding: 1rem;
     }
     .more-products {
-    flex-direction: column;
-    width: 20rem;
-    align-items: center;
-    margin-bottom: 0;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0;
     }
     .characteristic-row {
       border-bottom: 1px dotted lightgray;

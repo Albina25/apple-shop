@@ -54,7 +54,6 @@ background-color: $bg-color;
   align-items: center;
   background: $bg-color;
  
- 
   .bg-phone-img {
     background-image: url('../assets/ipod-touch.jpg');
     height: 60vh;
@@ -73,12 +72,7 @@ background-color: $bg-color;
   html, body{
     font-size: 12px;
   }
-  // .home {
-  //   height: 67.5vh;
-  //   background-size: auto 100%;
-  // }
   .home {
-    
     .catalog-slogon {
       padding: 0;
     }
@@ -95,17 +89,15 @@ background-color: $bg-color;
 }  
 @media only screen and (max-width: 734px) and (orientation: portrait) {
   .home {
-    // height: calc(100%-30vh);
     background-size: 500px auto;
-    
-  
+
     .catalog-slogon {
       padding: 0;
     }
     .bg-phone-img {
-    background-image: url('../assets/ipod-touch.jpg');
-    height: 58vh;
-    background-size: auto 100%;
+      background-image: url('../assets/ipod-touch.jpg');
+      height: 58vh;
+      background-size: auto 100%;
     }
     .home-slogon {
       font-size: 1.5rem;

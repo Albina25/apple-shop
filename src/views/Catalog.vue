@@ -4,22 +4,28 @@
     
     <div class="center">
       <div class="select-block">
-        <form action="select1.php" method="post">
-          <select name="select-color" class="select-color" @click="sendToServer(this.value)">
-            <option disabled selected>цвет</option>
-            <option value="Зеленый" class="option">зеленый</option>
-            <option value="Красный" class="option">красный</option>
-            <option value="Белый" class="option">белый</option>
-          </select>
-          <select name="select-price" class="select-price">
-            <option disabled selected>цена</option>
-            <option class="option">по убыванию</option>
-            <option class="option">по возрастанию</option>
-          </select>
+        <form class="row">
+          <div>
+            <select class="select-color" v-model="selectedColor" @change="sendToServer">
+              <option selected disabled>Цвет</option>
+              <option class="element-dropdown" v-for="option in optionsColor" :value="option.value">
+                {{ option.text }}
+              </option>
+            </select> 
+            <i class="fas fa-angle-down arrow"></i> 
+          </div>
+          <div>
+            <select class="select-price">
+              <option selected disabled>Цена</option>
+              <option class="element-dropdown">По убыванию</option>
+              <option class="element-dropdown">По возрастанию</option>
+            </select> 
+            <i class="fas fa-angle-down arrow"></i> 
+          </div>
         </form>
       </div>
       <div class="catalog-list">
-        <div class="product" @click="goToProduct(product)" v-for="product of products.slice(0, end)" :key="product.id"> 
+        <div class="product" @click="goToProduct(product)" v-for="product of filteredProd" :key="product.id"> 
           <img class="product-image" :src="getSrcImg(product)" alt="illustration" onerror="this.src=defImage"/>
           <div class="product-inf">
             <span class="product-type">{{ product.product_type }}</span>
@@ -29,7 +35,7 @@
         </div>
       </div>
     </div>
-    <button @click="showMoreProducts" v-show="this.visibleButtonShowMore" class="button-show-more-pr">показать еще</button>
+    <button @click="showMoreProducts" v-show="visibleButtonShowMore" class="button-show-more-pr">показать еще</button>
     <FooterMailing/>
   </div>  
 </template>
@@ -45,14 +51,16 @@ export default {
   data: () => ({
     isImage: true,
     prductsOnPage: [],
-    // mainTitle: "Apple iPod",
     defImage: image,
-    // showNav: false,
-    // mobileView: false,
-    // width: 0,
     image: null,
     end: 6,
     visibleButtonShowMore:true,
+    selectedColor:'Цвет',
+    optionsColor: [
+      { text: 'Белый', value: 'Белый'},
+      { text: 'Зеленый', value: 'Зеленый'},
+      { text: 'Красный', value: 'Красный'}
+    ],
     products: [
       {
           id: 1,
@@ -154,7 +162,11 @@ export default {
       }
     ]
   }),
- 
+  computed: {
+filteredProd() {
+  return this.products ? this.products.slice(0, this.end) : [];
+}
+  },
   methods: {
     goToProduct (product) {
       if (product.id) {
@@ -169,11 +181,10 @@ export default {
     getSrcImg(item) {
       return item.image ? item.image : this.defImage
     },
-    sendToServer(val) { 
-      const i = val;
+    sendToServer() { 
       const response =  fetch('sendToServer.php',{
         method: 'POST',
-        body: JSON.stringify(i),
+        body: JSON.stringify(this.selectedColor),
         headers: {
               'Content-Type': 'application/json', 
         }
@@ -211,42 +222,72 @@ $bg-color: #f3f3f3;
     justify-content: flex-start;
     width: 95%;
   }
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
   .center {
     display: flex;
-    justify-content: center;
     margin: 0 auto;
     text-align: center;
-    // max-width: 60rem;
     flex-direction: column;
+   
     .catalog-list {
       display: flex;
       display: grid;
       grid-template-columns: auto auto auto;
       margin: 0 auto;
       }
-    }
+  }
   %select {
     border: none;
     outline: none;
-    padding-bottom: 0.5rem;
+    padding: 0.3rem;
+    padding-bottom: 0.3rem;
     background-color: $bg-color;
     color: gray;
+    cursor: pointer;
     text-transform: uppercase;
     border-bottom: 1px solid gray;
     margin-right: 1rem;
+    -webkit-appearance : none;
+    -moz-appearance    : none;
+    -ms-appearance     : none;
+    appearance         : none !important;
+  }
+  .select-color {
+    @extend %select;
+    width: 7rem;
+    margin-bottom: 0.5rem;
     
   }
-  .select-color, .select-price {
+  .select-price {
     @extend %select;
-    &::after {
-      content: "";
-    padding-bottom: 0.5rem;
+    width: 12rem;
+  }
+  .element-dropdown {
+    &:hover {
+      background-color: lighten($bg-color,10%);
     }
+    &:active {
+      background-color: lighten($bg-color,30%);
+    }
+    &::selection {
+      background-color: red;
+    }
+    
   }
-  .option {
-    padding: 0.5rem 0;
+  .arrow {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    right: 3rem;
+    height: 100%;
+    pointer-events: none;
+    color: gray;
+    font-weight: bold;
+    padding-left: 1rem;
   }
-  
   .product {
     padding: 0 1rem;
     margin-bottom: 1.5rem;
@@ -278,7 +319,6 @@ $bg-color: #f3f3f3;
     font-size: 0.7rem;
   }
   .button-show-more-pr {
-    // display: flex;
     text-transform: uppercase;
     background-color: white;
     color: black;
@@ -302,6 +342,8 @@ $bg-color: #f3f3f3;
       .catalog-list {
         grid-template-columns: repeat(2,20rem);
       }
+    
+    
     }
   } 
 }
@@ -310,13 +352,11 @@ $bg-color: #f3f3f3;
     .center {
       .catalog-list {
         grid-template-columns: repeat(1,20rem);
-          // flex-direction: column;
-          // width: 20rem;
       }
+      .row {
+      flex-direction: column;
     }
-    // .product-image {
-    //   width: 16rem;
-    // }
+    }
     .header-text {
       font-size: 0.8rem;
     }

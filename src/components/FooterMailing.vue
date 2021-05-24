@@ -34,11 +34,11 @@ export default {
   data: () => ({
     email: '',
     error: null,
-    // isValid: false,
   }),
   computed: {
     isValid() {
        return this.email ? (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)): false
+       
     }
   },
   methods: {
@@ -74,103 +74,94 @@ export default {
     flex-direction: column;
     align-items: center;
     background-color: black;
-    // background: linear-gradient(to right, #080808 15%,#606060);
     width: 100%;
     color: white;
     padding: 1rem 0;
     
-    .mail-input {
-      height: 2rem;
-      margin-right: 1rem;
-      
+    .advice {
+      margin-bottom: 1rem;
     }
     .list-and-form {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-    
-    .individual-part {
-      padding: 1rem;
-    }  
-    .form-part {
-      // display: flex;
-      // flex-direction: row;
-      padding: 0.5rem;
-      border: 1px solid white;
-      background-color: lighten(rgb(15, 15, 15),10%);
-    }
-    .advice {
-      margin-bottom: 1rem;
-    }
-    .email-form {
-      display: flex;
-      flex-direction: column;
-      padding: 1rem;
-      background-color: white;
-      justify-content: center;
-    }
-    .input-and-button {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      margin-right: 0.5rem;
-      justify-content: center;
-    }
-    .error {
-      color: red;
-      background-color: white;
-      width: 100%;
-      font-size: 0.9rem;
-    }
-    .list {
-      text-align: left
-    }
-    .point-list {
-      margin-bottom: 0.7rem;
-      font-size: 0.9rem;
-    }
-    .invalidEmail {
-      border: 1px solid red;
-    }
-    .button-mail {
-    text-transform: uppercase;
-    background-color: black;
-    color: white;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    text-decoration: none;
-    border: 1px solid gray;
-      &:hover {
-        opacity: 0.8;
+      
+      .mail-input {
+        height: 2rem;
+        margin-right: 1rem;
       }
-      &:active {
-        opacity: 0.6;
+      .individual-part {
+        padding: 1rem;
+      }  
+      .form-part {
+        padding: 0.5rem;
+        border: 1px solid white;
+        background-color: lighten(rgb(15, 15, 15),10%);
       }
-    }
+      .email-form {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        background-color: white;
+        justify-content: center;
+      }
+      .input-and-button {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        margin-right: 0.5rem;
+        justify-content: center;
+      }
+      .error {
+        color: red;
+        background-color: white;
+        width: 100%;
+        font-size: 0.9rem;
+      }
+      .list {
+        text-align: left
+      }
+      .point-list {
+        margin-bottom: 0.7rem;
+        font-size: 0.9rem;
+      }
+      .invalidEmail {
+        border: 1px solid red;
+      }
+      .button-mail {
+        text-transform: uppercase;
+        background-color: black;
+        color: white;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        text-decoration: none;
+        border: 1px solid gray;
+          &:hover {
+            opacity: 0.8;
+          }
+          &:active {
+            opacity: 0.6;
+          }
+      }
     }
   }
   
   @media only screen and (max-width: 734px) and (orientation: portrait) {
-  .mailing {
-    padding-bottom: 0;  
-    .mail-input {
-      margin-bottom: 0.5rem;
-      margin-right: 0;
+    .mailing {
+      padding-bottom: 0;  
+      .mail-input {
+        margin-bottom: 0.5rem;
+        margin-right: 0;
+      }
+      .list-and-form {
+        flex-direction: column;
+        .input-and-button {
+          flex-direction: column;
+          margin: 0;
+        }
+      }
     }
-    .list-and-form {
-      flex-direction: column;
-    
-    .input-and-button {
-      flex-direction: column;
-      margin: 0;
-    }
-    }
-    .button-mail {
-      // margin-bottom: 0.5rem;
-    }
-    
-  }
   }  
 </style>

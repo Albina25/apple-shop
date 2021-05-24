@@ -27,10 +27,10 @@ export default {};
 #navigation-mobile {
   position: absolute;
   width: 100%;
-  height: 95vh;
+  height: 96vh;
   margin-top: 1.9rem;
-  // background: linear-gradient(to right, #080808 15%,#606060);
-  background-color:darken( #606060, 18%);
+  background: linear-gradient(to right, #0f0f0f 15%,#4b4b4b);
+  background-color:darken( #606060, 19%);
   z-index: 9999;
   transition: .5s ease-in-out;
 }

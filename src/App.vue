@@ -1,25 +1,22 @@
 <template>
   <div id="app">
     <div class="header-image">
-      <Navigation v-if="!mobileView" /> 
-        <router-link v-if="mobileView" class="element-icon-home" to="/"><i class="fab fa-apple fa-lg" @click="showNav=false"></i></router-link>
+      <Navigation v-if="!mobileView"/> 
+        <router-link v-if="mobileView" class="element-icon-home" to="/"><i class="fab fa-apple fa-lg" @click="Nav=false"></i></router-link>
         <div class="icon-navigation" v-if="mobileView">
-          <i class="fas fa-bars element-icon-navigation" v-if="!showNav"  @click="showNav=!showNav" key="menu"></i>
-          <i class="fas fa-times element-icon-navigation" v-else @click="showNav=!showNav" key="clear"></i>
+          <i class="fas fa-bars element-icon-navigation" v-if="!Nav"  @click="changeNavVisieble" key="menu"></i>
+          <i class="fas fa-times element-icon-navigation" v-else @click="changeNavVisieble" key="clear"></i>
         </div>
-        <div v-if="showNav" @click="showNav=!showNav">
-          
-          <NavigationMobile />
+        <div v-if="Nav" @click="changeNavVisieble" >
+          <NavigationMobile/>
         </div>
         <div class="header-title-and-button">
-          <!-- <div class="header-title">  -->
             <h3>{{ mainTitle }}</h3>
             <h1 class="slogon">Развлечения<br>на полной скорости</h1>
-          <!-- </div> -->
           <div><router-link class="button-catalog" tag="button" to="/catalog/">каталог</router-link></div>
         </div>
     </div>
-  <router-view/>
+  <router-view v-show="!Nav"/>
   </div>
 </template>
 
@@ -38,7 +35,7 @@ export default {
     isImage: true,
     mainTitle: "Apple",
     plugImage: image,
-    showNav: false,
+    Nav: false,
     mobileView: false,
     width: 0,
   }),
@@ -47,9 +44,12 @@ export default {
       if ( window.innerWidth <= 734) {
         this.mobileView = true;
       } else { 
-          this.showNav = false; 
+          this.Nav = false; 
           this.mobileView = false;
         }
+    },
+    changeNavVisieble() {
+      this.Nav=!this.Nav;
     }
   },
   created() {
@@ -68,6 +68,7 @@ export default {
   color: #2c3e50;
   background: #f3f3f3;
   background-size: cover;
+  height: 100vh;
 }
 * {
   padding: 0;
@@ -76,14 +77,13 @@ export default {
   box-sizing: border-box;
 } 
 html, body {
-	// width: 100%;
 	font-size: 16px;
+  width: 100%;
 }
 .header-image {
   position: relative;
   height: 30vh;
   font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
-  // background-image: url('./assets/bg1.jpg');
   background: linear-gradient(to right, #080808 15%,#606060);
   margin-bottom: 1rem;
   width: 100%;
@@ -126,9 +126,9 @@ html, body {
    text-shadow: black 2px 3px 2px; 
 }
 .slogon {
-margin-bottom: 1rem;
-line-height: 1;
-width: auto;
+  margin-bottom: 1rem;
+  line-height: 1;
+  width: auto;
 }
 .icon-navigation {
   color: white;
@@ -162,6 +162,9 @@ width: auto;
   background-position: center;
   background-repeat: no-repeat;
   }  
+  html, body {
+	font-size: 12px;
+  }
 }
 @media only screen and (max-width: 734px) and (orientation: portrait) {
   html, body {
@@ -170,7 +173,6 @@ width: auto;
   .header-title-and-button {
       font-size: 1rem;
   }
-  
   .header-image {
   background-size: 1000px auto;
   background-position: center;
@@ -178,5 +180,4 @@ width: auto;
   }  
 
 }
-
 </style>
