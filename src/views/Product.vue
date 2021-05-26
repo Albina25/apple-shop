@@ -4,11 +4,6 @@
       <div class="product-photo-and-inf">
         <div class="prod-image">
           <img id="expandedImg" class="main-image" :src="getImage.image">
-          <!-- <div class="images-row">
-            <img class="demo" :src="defImage" @click="currentImage(this)" alt="img1">
-            <img class="demo" :src="defImage" @click="currentImage(this)" alt="img2">
-            <img class="demo" :src="defImage" @click="currentImage(this)" alt="img3">
-          </div> -->
         </div>
         <div class="general-inf">
           <div><h2>{{ selectedProduct.product_type }}</h2></div>
@@ -29,7 +24,6 @@
           <tbody :class="{'characteristics-hidden': tableHidden}">
             <tr class="characteristic-row">
               <td class="characteristic-col-name">{{ fields.display }}</td>
-              <!-- <td v-for="(detailValue,index) in selectedProduct.details" :key= "'more' + index">{{ detailValue }}</td>  -->
               <td>{{ selectedProduct.details.display }}</td>
             </tr>
             <tr class="characteristic-row">
@@ -56,9 +50,6 @@
               <td class="characteristic-col-name">{{ fields.screen }}</td>
               <td>{{ selectedProduct.details.screen }}</td>
             </tr>
-            
-            
-            
           </tbody>
         </table>
         <button class="button-full-details" v-if="tableHidden" @click="openDetails">Полное описание</button>
@@ -79,7 +70,6 @@
     </div> 
     </div>
   <FooterMailing/>
-
   </div>
 </template>
 

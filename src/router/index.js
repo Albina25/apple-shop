@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Catalog from '../views/Catalog.vue'
+import Category_iPod from '../views/Category_iPod.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,12 @@ const routes = [
     path: '/catalog',
     name: 'catalog',
     component: Catalog,
+    props: true
+  },
+  {
+    path: '/catalog/category_iPod',
+    name: 'category_iPod',
+    component: Category_iPod,
     props: true
   },
   {

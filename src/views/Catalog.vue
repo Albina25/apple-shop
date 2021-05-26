@@ -1,195 +1,81 @@
 <template>
   <div class="catalog">
-    <h3 class="catalog-slogon">Выбери свой iPod</h3>
-    
+    <h3 class="catalog-title">знакомьтесь.</h3>
+    <h2 class="catalog-slogon">Удивительно мощно. Удивительно просто.</h2>
     <div class="center">
-      <div class="select-block">
-        <form class="row">
-          <div>
-            <select class="select-color" v-model="selectedColor" @change="sendToServer">
-              <option selected disabled>Цвет</option>
-              <option class="element-dropdown" v-for="option in optionsColor" :value="option.value">
-                {{ option.text }}
-              </option>
-            </select> 
-            <i class="fas fa-angle-down arrow"></i> 
-          </div>
-          <div>
-            <select class="select-price">
-              <option selected disabled>Цена</option>
-              <option class="element-dropdown">По убыванию</option>
-              <option class="element-dropdown">По возрастанию</option>
-            </select> 
-            <i class="fas fa-angle-down arrow"></i> 
-          </div>
-        </form>
-      </div>
+      
       <div class="catalog-list">
-        <div class="product" @click="goToProduct(product)" v-for="product of filteredProd" :key="product.id"> 
-          <img class="product-image" :src="getSrcImg(product)" alt="illustration" onerror="this.src=defImage"/>
-          <div class="product-inf">
-            <span class="product-type">{{ product.product_type }}</span>
-            <span class="product-title">{{ product.title}}</span>
-            <span class="price">{{ product.price }}<i class="fas fa-ruble-sign fa-xs"></i></span>
-          </div>
+        <div class="category" v-for="category of categories" :key="category.id"> 
+          <a :href="category.to">
+            <div class="gradient">
+              <img class="category-image" :src="getSrcImg(category)" alt="illustration" onerror="this.src=defImage"/>
+              <span class="category-title">{{ category.title}}</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
-    <button @click="showMoreProducts" v-show="visibleButtonShowMore" class="button-show-more-pr">показать еще</button>
     <FooterMailing/>
   </div>  
 </template>
 
 <script>
 import FooterMailing from '../components/FooterMailing.vue'
-import image from '../assets/apple.png'
+import image from '../../public/imgApple/apple.png'
+import imgIpod from '../../public/imgApple/ipod.jpg'
+
 export default {
-  name: 'Home',
+  name: 'Catalog',
   components: {
     FooterMailing
   },
   data: () => ({
     isImage: true,
-    prductsOnPage: [],
     defImage: image,
     image: null,
-    end: 6,
-    visibleButtonShowMore:true,
-    selectedColor:'Цвет',
-    optionsColor: [
-      { text: 'Белый', value: 'Белый'},
-      { text: 'Зеленый', value: 'Зеленый'},
-      { text: 'Красный', value: 'Красный'}
-    ],
-    products: [
+    categories: [
       {
           id: 1,
-          title: "IPod Nano - 8GB",
-          product_type: "Cult Products",
-          price: "20000",
+          title: "Mac",
           image: null,
+          to: null,
       },
       {
           id: 2,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "56700",
-          image: "http://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
+          title: "IPad",
+          image: null,
+          to: "/catalog/category_iPod",
       },
       {
           id: 3,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "5600",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
+          title: "IPhone",
+          image: null,
+          to: "/catalog/category_iPod",
       },
       {
           id: 4,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "12000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
+          title: "Whatch",
+          image: null,
+          to: "/catalog/category_iPod",
       },
       {
           id: 5,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "7800",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
+          title: "TV",
+          image: null,
+          to: "/catalog/category_iPod",
       },
       {
           id: 6,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "30000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
+          title: "IPod",
+          image: imgIpod,
+          to: "/catalog/category_iPod",
       },
-      {
-          id: 7,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "32000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-      },
-      {
-          id: 8,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "80000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-      },
-      {
-          id: 9,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-      },
-      {
-          id: 10,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-      },
-      {
-          id: 11,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-      },
-      {
-          id: 12,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-      },
-      {
-          id: 13,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-      },
-      {
-          id: 14,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-      }
     ]
   }),
-  computed: {
-filteredProd() {
-  return this.products ? this.products.slice(0, this.end) : [];
-}
-  },
   methods: {
-    goToProduct (product) {
-      if (product.id) {
-      this.$router.push({name:'product', params:{id: product.id}})
-      }
-  },
-    showMoreProducts () {
-      this.end = this.end + 6;
-      if (this.end > this.products.length) {this.visibleButtonShowMore = false; }
-      return this.end;
-    },
     getSrcImg(item) {
       return item.image ? item.image : this.defImage
     },
-    sendToServer() { 
-      const response =  fetch('sendToServer.php',{
-        method: 'POST',
-        body: JSON.stringify(this.selectedColor),
-        headers: {
-              'Content-Type': 'application/json', 
-        }
-      });
-    }
   }
 }
 </script>
@@ -208,9 +94,14 @@ $bg-color: #f3f3f3;
   align-items: center;
   width: 100%;
   
-  .catalog-slogon {
-    margin-bottom: 1rem;
+  .catalog-title {
+    margin: 2rem 0;
     font-size: 1.7rem;
+    text-transform: uppercase;
+  }
+  .catalog-slogon {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
   }
   .select-block {
     position: relative;
@@ -231,7 +122,8 @@ $bg-color: #f3f3f3;
     margin: 0 auto;
     text-align: center;
     flex-direction: column;
-   
+    margin-bottom: 2rem;
+
     .catalog-list {
       display: flex;
       display: grid;
@@ -265,18 +157,6 @@ $bg-color: #f3f3f3;
     @extend %select;
     width: 12rem;
   }
-  .element-dropdown {
-    &:hover {
-      background-color: lighten($bg-color,10%);
-    }
-    &:active {
-      background-color: lighten($bg-color,30%);
-    }
-    &::selection {
-      background-color: red;
-    }
-    
-  }
   .arrow {
     position: relative;
     justify-content: center;
@@ -288,12 +168,13 @@ $bg-color: #f3f3f3;
     font-weight: bold;
     padding-left: 1rem;
   }
-  .product {
+  .category {
     padding: 0 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     cursor: pointer;
+    position: relative;
   }
-  .product-inf {
+  .category-inf {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -304,36 +185,48 @@ $bg-color: #f3f3f3;
     padding: 0.1rem 0.7rem;
     font-size: 1.4rem;
   }
-  .product-image {
+  .category-image {
     width: 18rem;
+    height: 10rem;
+    text-align: center;
     border: 1px solid grey;
     border-radius: 10px;
+  }
+  .gradient {
+	display: inline-block;
+	position: relative;    
+	line-height: 0;
     &:hover {
       opacity: 0.8;
     }
     &:active {
       opacity: 0.6;
     }
+    &:after {
+      background: transparent;
+      background: linear-gradient(to bottom, rgba(255, 254, 254, 0), 85%, #000000);
+      opacity: 0.6;
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
-  .product-type {
+  .category-title {
+    z-index: 9999;
+    position: relative;
+    color: white;
+    text-shadow: 1px 1px 1px #000;
+    width: 100%;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .category-type {
     font-size: 0.7rem;
-  }
-  .button-show-more-pr {
-    text-transform: uppercase;
-    background-color: white;
-    color: black;
-    border: 1px solid black;
-    padding: 0.5rem 1rem;
-    color: black;
-    cursor: pointer;
-    text-decoration: none;
-    margin-bottom: 1rem;
-      &:hover {
-        opacity: 0.8;
-      }
-      &:active {
-        opacity: 0.6;
-      }
   }
 }
 @media only screen and (min-width: 415px) and (max-width: 734px) and (orientation: portrait) {
@@ -342,8 +235,6 @@ $bg-color: #f3f3f3;
       .catalog-list {
         grid-template-columns: repeat(2,20rem);
       }
-    
-    
     }
   } 
 }
@@ -355,7 +246,7 @@ $bg-color: #f3f3f3;
       }
       .row {
       flex-direction: column;
-    }
+      }
     }
     .header-text {
       font-size: 0.8rem;

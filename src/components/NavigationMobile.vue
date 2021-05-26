@@ -7,7 +7,7 @@
       <li class="element-navigation-mobile">iPhone</li>
       <li class="element-navigation-mobile">Whatch</li>
       <li class="element-navigation-mobile">TV</li>
-      <li class="element-navigation-mobile"><router-link class="element-navigation-mobile" to="/catalog" >iPod</router-link></li>
+      <li class="element-navigation-mobile"><router-link class="element-navigation-mobile" to="/catalog/category_iPod" >iPod</router-link></li>
       <li class="element-navigation-mobile">Поддержка</li>
     </ul> 
     <div class="social-media">

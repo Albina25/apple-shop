@@ -76,6 +76,10 @@ export default {
   font-family: Roboto, sans-serif;
   box-sizing: border-box;
 } 
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
 html, body {
 	font-size: 16px;
   width: 100%;
