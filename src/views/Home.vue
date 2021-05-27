@@ -18,7 +18,7 @@ export default {
   },
   data: () => ({
     isImage: true,
-    mainTitle: "Apple iPod",
+    mainTitle: 'Apple iPod',
     showNav: false,
     mobileView: false,
         

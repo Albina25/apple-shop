@@ -6,7 +6,7 @@
       
       <div class="catalog-list">
         <div class="category" v-for="category of categories" :key="category.id"> 
-          <a :href="category.to">
+          <a :href="category.url">
             <div class="gradient">
               <img class="category-image" :src="getSrcImg(category)" alt="illustration" onerror="this.src=defImage"/>
               <span class="category-title">{{ category.title}}</span>
@@ -38,37 +38,37 @@ export default {
           id: 1,
           title: "Mac",
           image: null,
-          to: null,
+          url: null,
       },
       {
           id: 2,
           title: "IPad",
           image: null,
-          to: "/catalog/category_iPod",
+          url: null,
       },
       {
           id: 3,
           title: "IPhone",
           image: null,
-          to: "/catalog/category_iPod",
+          url: null,
       },
       {
           id: 4,
           title: "Whatch",
           image: null,
-          to: "/catalog/category_iPod",
+          url: null,
       },
       {
           id: 5,
           title: "TV",
           image: null,
-          to: "/catalog/category_iPod",
+          url: null,
       },
       {
           id: 6,
           title: "IPod",
           image: imgIpod,
-          to: "/catalog/category_iPod",
+          url: "/catalog/category_iPod",
       },
     ]
   }),
@@ -142,10 +142,7 @@ $bg-color: #f3f3f3;
     text-transform: uppercase;
     border-bottom: 1px solid gray;
     margin-right: 1rem;
-    -webkit-appearance : none;
-    -moz-appearance    : none;
-    -ms-appearance     : none;
-    appearance         : none !important;
+    appearance: none !important;
   }
   .select-color {
     @extend %select;
@@ -215,7 +212,7 @@ $bg-color: #f3f3f3;
     }
   }
   .category-title {
-    z-index: 9999;
+    z-index: 9;
     position: relative;
     color: white;
     text-shadow: 1px 1px 1px #000;

@@ -24,31 +24,31 @@
           <tbody :class="{'characteristics-hidden': tableHidden}">
             <tr class="characteristic-row">
               <td class="characteristic-col-name">{{ fields.display }}</td>
-              <td>{{ selectedProduct.details.display }}</td>
+              <td>{{ getDatail.display }}</td>
             </tr>
             <tr class="characteristic-row">
               <td class="characteristic-col-name">{{ fields.format_audio }}</td>
-              <td  class="characteristic-col-value">{{ selectedProduct.details.format_audio }}</td>
+              <td  class="characteristic-col-value">{{ getDatail.format_audio }}</td>
             </tr>
             <tr class="characteristic-row">
               <td class="characteristic-col-name">{{ fields.format_video }}</td>
-              <td>{{ selectedProduct.details.format_video }}</td>
+              <td>{{ getDatail.format_video }}</td>
             </tr>
             <tr class="characteristic-row">
               <td class="characteristic-col-name">{{ fields.format_graph }}</td>
-              <td>{{ selectedProduct.details.format_graph }}</td>
+              <td>{{ getDatail.format_graph }}</td>
             </tr>
             <tr class="characteristic-row">
               <td class="characteristic-col-name">{{ fields.memory }}</td>
-              <td>{{ selectedProduct.details.memory }}</td>
+              <td>{{ getDatail.memory }}</td>
             </tr>
             <tr class="characteristic-row">
               <td class="characteristic-col-name">{{ fields.time }}</td>
-              <td>{{ selectedProduct.details.time }}</td>
+              <td>{{ getDatail.time }}</td>
             </tr>
             <tr class="characteristic-row">
               <td class="characteristic-col-name">{{ fields.screen }}</td>
-              <td>{{ selectedProduct.details.screen }}</td>
+              <td>{{ getDatail.screen }}</td>
             </tr>
           </tbody>
         </table>
@@ -58,7 +58,7 @@
     <div class="padding">
       <h3 class="more-prod-title">Товары, которые могут Вам понравиться</h3>
       <div class="more-products">
-        <div class="product" @click="getProduct(product.id)" v-for="product in threeProducts" :key="product.id">
+        <div class="product" @click="getProduct(product.id)" v-for="product of threeProducts" :key="product.id">
           <img class="image" :src="getSrcImg(product)" alt="illustration" onerror="this.src=defImage"/>
           <div class="product-inf">
             <span class="product-type">{{ product.product_type }}</span>
@@ -76,6 +76,7 @@
 <script>
 import image from '../assets/apple.png';
 import FooterMailing from '../components/FooterMailing.vue'
+import {dataProducts} from '../data/DataProducts.js'
 
  export default {
   name:'Product',
@@ -90,6 +91,7 @@ import FooterMailing from '../components/FooterMailing.vue'
     defImage: image,
     selectedProduct: {},
     threeProducts: [],
+    products: dataProducts,
     fields: {
       display: 'Диагональ дисплея (дюйм)',
       screen: 'Разрешение экрана',
@@ -99,246 +101,7 @@ import FooterMailing from '../components/FooterMailing.vue'
       memory: 'Встроенная память (Гб)',
       time: 'Время воспроизведения аудио (ч)'
     },
-    products: [
-      {
-          id: 1,
-          title: "IPod Nano - 8GB",
-          product_type: "Cult Products",
-          price: "20000",
-          image: null,
-          details: 
-          {
-            display: "3.1",
-            format_audio: "MP3, WAV, ALAC", 
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 2,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "56700",
-          image: "http://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details:
-          {
-            display: "3.3",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 3,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "5600",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.2",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 4,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "12000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.4",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 5,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "7800",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.6",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 6,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "30000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.7",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 7,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "32000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.9",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 8,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "80000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.8",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 9,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.9",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 10,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.4",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 11,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.3",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 12,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.5",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 13,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.5",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      },
-      {
-          id: 14,
-          title: "IPod Touch 8GB",
-          product_type: "Cult Products",
-          price: "120000",
-          image: "https://www.notebookcheck-ru.com/fileadmin/Notebooks/News/_nc3/Apple_iPhone_12_vs_Apple_iPad_Mini_6_21518.jpg",
-          details: 
-          {
-            display: "3.5",
-            format_audio: "MP3, WAV, ALAC",
-            format_video: 'H.264',
-            format_graph: 'JPEG',
-            memory: "8",
-            time: "40",
-            screen: "480X320",
-          }
-      }
-    ]
+    
   }
  },
   mounted() {
@@ -349,9 +112,20 @@ import FooterMailing from '../components/FooterMailing.vue'
     getImage() {
       return {
         image: this.selectedProduct.image ? this.selectedProduct.image : this.defImage,
-    
       }
-    }
+    },
+    getDatail() {
+      return {
+        display: this.selectedProduct.details.display ? this.selectedProduct.details.display : "-" ,
+        screen: this.selectedProduct.details.screen ? this.selectedProduct.details.screen : "-" ,
+        format_audio: this.selectedProduct.details.format_audio ? this.selectedProduct.details.format_audio : "-" ,
+        format_video: this.selectedProduct.details.format_video ? this.selectedProduct.details.format_video : "-" ,
+        format_graph: this.selectedProduct.details.format_graph ? this.selectedProduct.details.format_graph : "-" , 
+        memory: this.selectedProduct.details.memory ? this.selectedProduct.details.memory : "-" ,
+        time: this.selectedProduct.details.time ? this.selectedProduct.details.time : "-"
+        
+      }
+}
   },
   methods: {
     getProduct(id) {

@@ -42,12 +42,15 @@
 <script>
 import FooterMailing from '../components/FooterMailing.vue'
 import image from '../../public/imgApple/apple.png'
+import {dataProducts} from '../components/DataProducts.js'
+
 export default {
   name: 'Category_iPod',
   components: {
     FooterMailing
   },
   data: () => ({
+    products1: dataProducts,
     isImage: true,
     prductsOnPage: [],
     defImage: image,
@@ -55,6 +58,7 @@ export default {
     end: 6,
     visibleButtonShowMore:true,
     selectedColor:'Цвет',
+    
     optionsColor: [
       { text: 'Белый', value: 'Белый'},
       { text: 'Зеленый', value: 'Зеленый'},
@@ -169,7 +173,7 @@ filteredProd() {
   methods: {
     goToProduct (product) {
       if (product.id) {
-      this.$router.push({name:'product', params:{id: product.id}})
+      this.$router.push({name:'product', params:{id:product.id}})
       }
   },
     showMoreProducts () {
@@ -258,7 +262,6 @@ $bg-color: #f3f3f3;
     @extend %select;
     width: 7rem;
     margin-bottom: 0.5rem;
-    
   }
   .select-price {
     @extend %select;

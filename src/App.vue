@@ -2,21 +2,21 @@
   <div id="app">
     <div class="header-image">
       <Navigation v-if="!mobileView"/> 
-        <router-link v-if="mobileView" class="element-icon-home" to="/"><i class="fab fa-apple fa-lg" @click="Nav=false"></i></router-link>
+        <router-link v-if="mobileView" class="element-icon-home" to="/"><i class="fab fa-apple fa-lg" @click="NavMobile=false"></i></router-link>
         <div class="icon-navigation" v-if="mobileView">
-          <i class="fas fa-bars element-icon-navigation" v-if="!Nav"  @click="changeNavVisieble" key="menu"></i>
-          <i class="fas fa-times element-icon-navigation" v-else @click="changeNavVisieble" key="clear"></i>
+          <i class="fas fa-bars element-icon-navigation" v-if="!NavMobile"  @click="changeNavVisible" key="menu"></i>
+          <i class="fas fa-times element-icon-navigation" v-else @click="changeNavVisible" key="clear"></i>
         </div>
-        <div v-if="Nav" @click="changeNavVisieble" >
+        <div v-if="NavMobile" @click="changeNavVisible" >
           <NavigationMobile/>
         </div>
         <div class="header-title-and-button">
             <h3>{{ mainTitle }}</h3>
             <h1 class="slogon">Развлечения<br>на полной скорости</h1>
-          <div><router-link class="button-catalog" tag="button" to="/catalog/">каталог</router-link></div>
+          <div><router-link class="button-catalog" tag="button" to="/catalog">каталог</router-link></div>
         </div>
     </div>
-  <router-view v-show="!Nav"/>
+  <router-view v-show="!NavMobile"/>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
     isImage: true,
     mainTitle: "Apple",
     plugImage: image,
-    Nav: false,
+    NavMobile: false,
     mobileView: false,
     width: 0,
   }),
@@ -44,12 +44,12 @@ export default {
       if ( window.innerWidth <= 734) {
         this.mobileView = true;
       } else { 
-          this.Nav = false; 
+          this.NavMobile = false; 
           this.mobileView = false;
         }
     },
-    changeNavVisieble() {
-      this.Nav=!this.Nav;
+    changeNavVisible() {
+      this.NavMobile=!this.NavMobile;
     }
   },
   created() {
