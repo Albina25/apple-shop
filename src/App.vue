@@ -23,7 +23,6 @@
 <script>
 import Navigation from './components/Navigation.vue'
 import NavigationMobile from './components/NavigationMobile.vue'
-import image from './assets/apple.png';
 
 export default {
   name: 'App',
@@ -34,7 +33,6 @@ export default {
   data: () => ({
     isImage: true,
     mainTitle: "Apple",
-    plugImage: image,
     NavMobile: false,
     mobileView: false,
     width: 0,
@@ -70,6 +68,10 @@ export default {
   background-size: cover;
   height: 100vh;
 }
+// img {
+//   max-width: 100%;
+//   display: block;
+// }
 * {
   padding: 0;
   margin: 0;
@@ -162,26 +164,22 @@ html, body {
 
 @media only screen and (min-width: 735px) and (max-width: 1068px) {
   .header-image {
-  background-size: 1200px auto;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-size: 1200px auto;
+    background-position: center;
+    background-repeat: no-repeat;
   }  
-  html, body {
-	font-size: 12px;
-  }
 }
 @media only screen and (max-width: 734px) and (orientation: portrait) {
   html, body {
-	font-size: 12px;
+	  font-size: 12px;
   }
   .header-title-and-button {
-      font-size: 1rem;
+    font-size: 1rem;
   }
   .header-image {
-  background-size: 1000px auto;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-size: 1000px auto;
+    background-position: center;
+    background-repeat: no-repeat;
   }  
-
 }
 </style>

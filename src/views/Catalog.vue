@@ -21,8 +21,8 @@
 
 <script>
 import FooterMailing from '../components/FooterMailing.vue'
-import image from '../../public/imgApple/apple.png'
-import imgIpod from '../../public/imgApple/ipod.jpg'
+const defImage = '/imgApple/apple.png'
+const imgIpod = '/imgApple/ipod.jpg'
 
 export default {
   name: 'Catalog',
@@ -31,7 +31,6 @@ export default {
   },
   data: () => ({
     isImage: true,
-    defImage: image,
     image: null,
     categories: [
       {
@@ -74,7 +73,7 @@ export default {
   }),
   methods: {
     getSrcImg(item) {
-      return item.image ? item.image : this.defImage
+      return item.image ? item.image : defImage
     },
   }
 }
@@ -183,33 +182,33 @@ $bg-color: #f3f3f3;
     font-size: 1.4rem;
   }
   .category-image {
-    width: 18rem;
-    height: 10rem;
+    width: 290px;
+    height: 160px;
     text-align: center;
     border: 1px solid grey;
     border-radius: 10px;
   }
   .gradient {
-	display: inline-block;
-	position: relative;    
-	line-height: 0;
-    &:hover {
-      opacity: 0.8;
-    }
-    &:active {
-      opacity: 0.6;
-    }
-    &:after {
-      background: transparent;
-      background: linear-gradient(to bottom, rgba(255, 254, 254, 0), 85%, #000000);
-      opacity: 0.6;
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-    }
+    display: inline-block;
+    position: relative;    
+    line-height: 0;
+      &:hover {
+        opacity: 0.8;
+      }
+      &:active {
+        opacity: 0.6;
+      }
+      &:after {
+        background: transparent;
+        background: linear-gradient(to bottom, rgba(255, 254, 254, 0), 85%, #000000);
+        opacity: 0.6;
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+      }
   }
   .category-title {
     z-index: 9;
@@ -235,7 +234,7 @@ $bg-color: #f3f3f3;
     }
   } 
 }
-  @media only screen and (max-width: 497px) and (orientation: portrait) {
+@media only screen and (max-width: 497px) and (orientation: portrait) {
   .catalog {
     .center {
       .catalog-list {
@@ -254,6 +253,16 @@ $bg-color: #f3f3f3;
       top: 0;
     }
   }  
+}
+@media only screen and (max-width: 960px) and (orientation: portrait) {
+  .catalog {
+    .center {
+      .category-image {
+        width: 220px;
+        height: 120px;
+      }
+    }
+  }
 }
   </style>
 

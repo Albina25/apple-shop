@@ -34,10 +34,10 @@ export default {
     }
   }
 }
-
 </script>
 
 <style lang="scss">
+$img-ipod-touch: '../assets/ipod-touch.jpg';
 $bg-color: #f3f3f3 ;
 html, body{
 width: 100%;
@@ -55,7 +55,7 @@ background-color: $bg-color;
   background: $bg-color;
  
   .bg-phone-img {
-    background-image: url('../assets/ipod-touch.jpg');
+    background-image: url($img-ipod-touch);
     height: 60vh;
     background-size: auto 100%;
     background-position: center;
@@ -77,7 +77,7 @@ background-color: $bg-color;
       padding: 0;
     }
     .bg-phone-img {
-    background-image: url('../assets/ipod-touch.jpg');
+    background-image: url($img-ipod-touch);
     height: 57.5vh;
     background-size: auto 100%;
     }
@@ -95,7 +95,7 @@ background-color: $bg-color;
       padding: 0;
     }
     .bg-phone-img {
-      background-image: url('../assets/ipod-touch.jpg');
+      background-image: url($img-ipod-touch);
       height: 58vh;
       background-size: auto 100%;
     }

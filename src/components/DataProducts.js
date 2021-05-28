@@ -1,5 +1,5 @@
 
-export const dataProducts = [{
+export const products = [{
     id: 1,
     title: "IPod Nano - 8GB",
     product_type: "Cult Products",

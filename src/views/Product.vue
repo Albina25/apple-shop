@@ -59,7 +59,7 @@
       <h3 class="more-prod-title">Товары, которые могут Вам понравиться</h3>
       <div class="more-products">
         <div class="product" @click="getProduct(product.id)" v-for="product of threeProducts" :key="product.id">
-          <img class="image" :src="getSrcImg(product)" alt="illustration" onerror="this.src=defImage"/>
+          <img class="three-images" :src="getSrcImg(product)" alt="illustration" onerror="this.src=defImage"/>
           <div class="product-inf">
             <span class="product-type">{{ product.product_type }}</span>
             <span class="product-title">{{ product.title}}</span>
@@ -74,9 +74,9 @@
 </template>
 
 <script>
-import image from '../assets/apple.png';
+const defImage = '/imgApple/apple.png';
 import FooterMailing from '../components/FooterMailing.vue'
-import {dataProducts} from '../data/DataProducts.js'
+import {products} from '../data/DataProducts.js'
 
  export default {
   name:'Product',
@@ -88,10 +88,8 @@ import {dataProducts} from '../data/DataProducts.js'
     tableHidden: true,
     image: null,
     productId: null,
-    defImage: image,
     selectedProduct: {},
     threeProducts: [],
-    products: dataProducts,
     fields: {
       display: 'Диагональ дисплея (дюйм)',
       screen: 'Разрешение экрана',
@@ -101,7 +99,6 @@ import {dataProducts} from '../data/DataProducts.js'
       memory: 'Встроенная память (Гб)',
       time: 'Время воспроизведения аудио (ч)'
     },
-    
   }
  },
   mounted() {
@@ -111,7 +108,7 @@ import {dataProducts} from '../data/DataProducts.js'
   computed:{
     getImage() {
       return {
-        image: this.selectedProduct.image ? this.selectedProduct.image : this.defImage,
+        image: this.selectedProduct.image ? this.selectedProduct.image : defImage,
       }
     },
     getDatail() {
@@ -123,13 +120,12 @@ import {dataProducts} from '../data/DataProducts.js'
         format_graph: this.selectedProduct.details.format_graph ? this.selectedProduct.details.format_graph : "-" , 
         memory: this.selectedProduct.details.memory ? this.selectedProduct.details.memory : "-" ,
         time: this.selectedProduct.details.time ? this.selectedProduct.details.time : "-"
-        
       }
 }
   },
   methods: {
     getProduct(id) {
-      this.selectedProduct = this.products.find(item => item.id === id);
+      this.selectedProduct = products.find(item => item.id === id);
       window.scrollTo(0,0);
       this.getRandomItems();
     },
@@ -147,13 +143,13 @@ import {dataProducts} from '../data/DataProducts.js'
     getRandomItems() {
       this.threeProducts = [];
       while (this.threeProducts.length < 3) {
-      let randomProd = this.products[Math.floor(Math.random() * this.products.length)];
+      let randomProd = products[Math.floor(Math.random() * products.length)];
       if(!this.threeProducts.includes(randomProd))
       this.threeProducts.push(randomProd);
       }
     },
     getSrcImg(item) {
-      return item.image ? item.image : this.defImage
+      return item.image ? item.image : defImage
     }
     
   },
@@ -191,7 +187,7 @@ $bg-color: #f3f3f3;
     margin-bottom: 1rem;
   }
   .main-image {
-    width: 30rem;
+    width: 480px;
     border: 1px solid grey;
     border-radius: 10px;
     margin-right: 1rem;
@@ -328,7 +324,7 @@ $bg-color: #f3f3f3;
       background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f3f3f3 100%);
     }
   }
-    .image {
+    .three-images {
       width: 14rem;
       border: 1px solid grey;
       border-radius: 10px;
@@ -360,7 +356,7 @@ $bg-color: #f3f3f3;
      font-size: 14px;
    
     .main-image {
-      width: 20rem;
+      width: 240px;
       border: 1px solid grey;
       border-radius: 10px;
       margin-right: 0;
