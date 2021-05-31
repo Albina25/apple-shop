@@ -1,6 +1,12 @@
 <template>
   <div class="product">
     <div class="container">
+      <ul class="list-href">
+        <a class="list-href-element" href="/"><li>Главная</li></a>/
+        <a class="list-href-element" href="/catalog"><li>Каталог</li></a>/
+        <a class="list-href-element" href="/catalog/category_iPod"><li>iPod</li></a>/
+        <li class="list-href-element">{{ selectedProduct.product_type }}</li>
+      </ul>
       <div class="product-photo-and-inf">
         <div class="prod-image">
           <img id="expandedImg" class="main-image" :src="getImage.image">
@@ -204,6 +210,20 @@ $bg-color: #f3f3f3;
   .title {
     margin-bottom: 1rem;
   }
+  .list-href {
+    display: flex;
+    flex-flow: row wrap;
+    list-style-type: none;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+  }
+  .list-href-element {
+    padding: 0 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    color: gray;
+  }
   .button-basket {
     display: flex;
     text-transform: uppercase;
@@ -325,7 +345,7 @@ $bg-color: #f3f3f3;
     }
   }
     .three-images {
-      width: 14rem;
+      width: 210px;
       border: 1px solid grey;
       border-radius: 10px;
       &:hover {

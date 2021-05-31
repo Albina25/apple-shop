@@ -3,7 +3,6 @@
     <h3 class="catalog-title">знакомьтесь.</h3>
     <h2 class="catalog-slogon">Удивительно мощно. Удивительно просто.</h2>
     <div class="center">
-      
       <div class="catalog-list">
         <div class="category" v-for="category of categories" :key="category.id"> 
           <a :href="category.url">
@@ -183,7 +182,7 @@ $bg-color: #f3f3f3;
   }
   .category-image {
     width: 290px;
-    height: 160px;
+    height: 180px;
     text-align: center;
     border: 1px solid grey;
     border-radius: 10px;
@@ -259,7 +258,7 @@ $bg-color: #f3f3f3;
     .center {
       .category-image {
         width: 220px;
-        height: 120px;
+        height: 140px;
       }
     }
   }
